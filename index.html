@@ -1,0 +1,540 @@
+e · HTML
+Copier
+
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Thomas Lecaé — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #efeae0;
+    --paper: #fdfbf6;
+    --ink: #16201c;
+    --ink-soft: #4a5651;
+    --ink-faint: #8a9690;
+    --rule: #e0d8c5;
+    --accent: #2f5a3d;
+    --accent-soft: #6e8f78;
+    --highlight: #ebe6d6;
+ 
+    --page-w: 210mm;
+    --page-h: 297mm;
+    --pad-x: 15mm;
+    --pad-y: 13mm;
+  }
+ 
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); }
+ 
+  body {
+    font-family: "Manrope", -apple-system, sans-serif;
+    color: var(--ink);
+    font-size: 9pt;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding: 20px 0 80px;
+  }
+ 
+  /* ───── Page A4 exacte ───── */
+  .page {
+    width: var(--page-w);
+    min-height: var(--page-h);
+    max-height: var(--page-h);
+    margin: 0 auto;
+    padding: var(--pad-y) var(--pad-x);
+    background: var(--paper);
+    box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 16px 50px -20px rgba(20,30,25,.25);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+ 
+  /* ───── En-tête ───── */
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 18px;
+  }
+  .name {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 400;
+    font-size: 34pt;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 144;
+    margin: 0 0 5px;
+  }
+  .name em { font-style: italic; color: var(--accent); font-weight: 300; }
+  .tagline {
+    font-family: "Fraunces", Georgia, serif;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-soft);
+    font-size: 11.5pt;
+    margin: 0;
+  }
+  .contact {
+    text-align: right;
+    font-size: 8.4pt;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+  .contact a {
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  .contact .label {
+    font-size: 7pt;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+    margin-right: 6px;
+  }
+ 
+  /* ───── Deux colonnes ───── */
+  .columns {
+    display: grid;
+    grid-template-columns: 1.65fr 1fr;
+    gap: 24px;
+    flex: 1;
+    min-height: 0;
+  }
+  .col-left { min-width: 0; }
+  .col-right {
+    min-width: 0;
+    border-left: 1px solid var(--rule);
+    padding-left: 24px;
+  }
+ 
+  section { margin-bottom: 16px; }
+  section:last-child { margin-bottom: 0; }
+ 
+  h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 500;
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    margin: 0 0 11px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  h2::before {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 24px;
+    height: 1.5px;
+    background: var(--accent);
+  }
+ 
+  /* ───── Expériences ───── */
+  .job {
+    margin-bottom: 12px;
+    break-inside: avoid;
+  }
+  .job:last-child { margin-bottom: 0; }
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 2px;
+  }
+  .job-role { font-weight: 600; color: var(--ink); font-size: 9.5pt; }
+  .job-role .contract {
+    font-family: "Fraunces", Georgia, serif;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-faint);
+    font-size: 8.5pt;
+    margin-left: 5px;
+  }
+  .job-date {
+    font-size: 8pt;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .job-org {
+    font-size: 8.6pt;
+    color: var(--accent);
+    font-weight: 500;
+    margin: 0 0 4px;
+  }
+  .job-org .place { color: var(--ink-faint); font-weight: 400; }
+ 
+  .job ul { margin: 0; padding-left: 0; list-style: none; }
+  .job li {
+    position: relative;
+    padding-left: 11px;
+    margin-bottom: 2px;
+    color: var(--ink-soft);
+    font-size: 8.8pt;
+  }
+  .job li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px;
+    height: 1px;
+    background: var(--accent-soft);
+  }
+  .stack {
+    font-size: 7.6pt;
+    color: var(--accent);
+    background: var(--highlight);
+    padding: 1px 6px;
+    border-radius: 2px;
+    font-weight: 500;
+    white-space: nowrap;
+    margin-left: 3px;
+  }
+ 
+  /* ───── Colonne droite ───── */
+  .edu, .skill-block { margin-bottom: 11px; break-inside: avoid; }
+  .edu:last-child, .skill-block:last-child { margin-bottom: 0; }
+  .edu-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .edu-title { font-weight: 600; font-size: 9pt; color: var(--ink); }
+  .edu-date { font-size: 8pt; color: var(--ink-faint); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .edu-sub { font-size: 8.3pt; color: var(--accent); font-weight: 500; margin-top: 1px; }
+  .edu-mention {
+    font-family: "Fraunces", Georgia, serif;
+    font-style: italic;
+    color: var(--accent);
+    font-size: 8.3pt;
+  }
+  .edu-meta { font-size: 8.1pt; color: var(--ink-soft); margin-top: 3px; line-height: 1.4; }
+ 
+  .skill-label {
+    font-size: 7.4pt;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .skill-list { font-size: 8.7pt; color: var(--ink-soft); line-height: 1.55; }
+  .skill-list strong { color: var(--accent); font-weight: 600; }
+  .skill-list .row + .row { margin-top: 3px; }
+ 
+  .lang-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3px 12px;
+    font-size: 8.7pt;
+    color: var(--ink-soft);
+  }
+  .lang-grid strong { color: var(--ink); font-weight: 600; }
+  .lang-grid .lvl {
+    font-family: "Fraunces", Georgia, serif;
+    font-style: italic;
+    color: var(--accent);
+  }
+ 
+  .softskills {
+    font-family: "Fraunces", Georgia, serif;
+    font-style: italic;
+    font-size: 9.2pt;
+    color: var(--ink-soft);
+    line-height: 1.4;
+    margin: 0;
+  }
+  .softskills span { color: var(--accent); }
+ 
+  /* ───── Boutons flottants ───── */
+  .actions {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+  }
+  .btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 100px;
+    font-family: "Manrope", sans-serif;
+    font-size: 9.5pt;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(47,90,61,.35);
+    transition: transform .15s, box-shadow .15s, opacity .15s;
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(47,90,61,.45); }
+  .btn:disabled { opacity: 0.65; cursor: wait; }
+  .btn.ghost {
+    background: var(--paper);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+  }
+ 
+  /* ───── Pendant la génération PDF ───── */
+  body.exporting { background: var(--paper); padding: 0; }
+  body.exporting .page { box-shadow: none; margin: 0; }
+ 
+  /* ───── Fallback impression (Ctrl+P) ───── */
+  @page { size: A4; margin: 0; }
+  @media print {
+    body { background: white; padding: 0; }
+    .page {
+      box-shadow: none;
+      margin: 0;
+      width: 100%;
+      min-height: 100vh;
+      max-height: none;
+    }
+    .actions { display: none !important; }
+  }
+ 
+  /* ───── Petit écran ───── */
+  @media (max-width: 820px) {
+    body { padding: 0; }
+    .page { transform: scale(0.92); transform-origin: top center; }
+  }
+</style>
+</head>
+<body>
+ 
+<main class="page" id="cv">
+ 
+  <header>
+    <div>
+      <h1 class="name">Thomas <em>Lecaé</em></h1>
+      <p class="tagline">Ingénieur données &amp; géomatique — ingénierie territoriale, environnement</p>
+    </div>
+    <div class="contact">
+      <div><span class="label">Tél</span>06 19 65 26 44</div>
+      <div><span class="label">Mail</span><a href="mailto:lecaethomas4@gmail.com">lecaethomas4@gmail.com</a></div>
+      <div><span class="label">Lieu</span>Toulouse, France</div>
+      <div><span class="label">Web</span><a href="https://github.com/">github.com</a></div>
+    </div>
+  </header>
+ 
+  <div class="columns">
+ 
+    <!-- COLONNE GAUCHE : EXPÉRIENCES -->
+    <div class="col-left">
+      <section>
+        <h2>Expériences professionnelles</h2>
+ 
+        <div class="job">
+          <div class="job-head">
+            <div class="job-role">Ingénieur données <span class="contract">CDI</span></div>
+            <div class="job-date">Oct. 2023 — aujourd'hui</div>
+          </div>
+          <div class="job-org">AUAT — Agence d'Urbanisme et d'Aménagement de Toulouse Aire Métropolitaine <span class="place">· Toulouse</span></div>
+          <ul>
+            <li>Conception et automatisation d'indicateurs de politiques publiques locales, au plus près des utilisateurs<span class="stack">Postgres · Docker · Python · FME</span></li>
+            <li>Interfaces d'applications géographiques (collaboration & data-visualisation)<span class="stack">MapLibre . D3 · Chart.js · PHP · FastAPI · TileServer-GL</span></li>
+            <li>Encadrement de stage : modélisation Trame Verte et Bleue (COSIA, Graphab)</li>
+            <li>Intervention en colloque sur la réutilisation (inférence, fine-tuning) d'un modèle de deep learning en télédétection optique</li>
+            <li>R&D : RAG & IA gen. pour faciliter l'accès à des indicateurs métiers | Recherche sémantique appliquée aux documents de planification territoriale <span class='stack'>Python (sentence_transformer, fastapi) . Ollama . Postgres</span></li>
+          </ul>
+        </div>
+ 
+        <div class="job">
+          <div class="job-head">
+            <div class="job-role">Ingénieur d'études — traitement de données <span class="contract">CDD</span></div>
+            <div class="job-date">Fév. — Oct. 2023</div>
+          </div>
+          <div class="job-org">INRAE — Institut national de recherche pour l'agriculture, l'alimentation et l'environnement <span class="place">· Toulouse</span></div>
+          <ul>
+            <li>Production de la <a href="https://hal-lara.archives-ouvertes.fr/hal-04635554v1" style="color:inherit">BNVD spatialisée</a> — ventes de produits phytosanitaires<span class="stack">R · Python · Postgres</span></li>
+            <li>Amélioration du RPG par fusion de données <span class="stack">Python</span></li>
+          </ul>
+        </div>
+ 
+        <div class="job">
+          <div class="job-head">
+            <div class="job-role">Ingénieur en géomatique <span class="contract">CDI</span></div>
+            <div class="job-date">Sept. 2020 — Juin 2022</div>
+          </div>
+          <div class="job-org">SGEvT — Société Générale d'Évaluation des Territoires <span class="place">· Toulouse</span></div>
+          <ul>
+            <li>Élaboration et automatisation d'indicateurs multithématiques<span class="stack">Python · Postgres · PL/pgSQL</span></li>
+            <li>Solutions de dataviz interactives web<span class="stack">Mapbox · Chart.js</span></li>
+          </ul>
+        </div>
+ 
+        <div class="job">
+          <div class="job-head">
+            <div class="job-role">Ingénieur projet — géomatique <span class="contract">Stage</span></div>
+            <div class="job-date">Fév. 2019 — Juil. 2020</div>
+          </div>
+          <div class="job-org">Groupe CLS <span class="place">· Lille</span></div>
+          <ul>
+            <li>Chaînes de traitement (fusion de données, M-L) vecteur / raster pour la production automatique de données socles d'occupation du sol à grande échelle<span class="stack">Python · Postgres · Bash · Docker</span></li>
+          </ul>
+        </div>
+ 
+        <div class="job">
+          <div class="job-head">
+            <div class="job-role">Assistant d'études — géomatique &amp; données <span class="contract">CDD</span></div>
+            <div class="job-date">Juin — Nov. 2019</div>
+          </div>
+          <div class="job-org">ADULM — Agence de Développement et d'Urbanisme de Lille Métropole <span class="place">· Lille</span></div>
+          <ul>
+            <li>Modélisation de trames écologiques multi-espèces avec Graphab</li>
+            <li>Détection de la végétation (3 strates) par croisement SPOT 6 / LiDAR</li>
+          </ul>
+        </div>
+ 
+        <div class="job">
+          <div class="job-head">
+            <div class="job-role">Télédétection &amp; cartographie <span class="contract">Stage</span></div>
+            <div class="job-date">Mars — Juin 2019</div>
+          </div>
+          <div class="job-org">DAAF Guyane <span class="place">· Cayenne</span></div>
+          <ul>
+            <li>Chaîne semi-automatique optique + radar pour la cartographie de l'occupation du sol de la Guyane française</li>
+          </ul>
+        </div>
+ 
+        <div class="job">
+          <div class="job-head">
+            <div class="job-role">Technicien photo-interprète <span class="contract">CDD</span></div>
+            <div class="job-date">Juin 2017 — Nov. 2018</div>
+          </div>
+          <div class="job-org">Groupe CLS <span class="place">· Lille</span></div>
+          <ul>
+            <li>Photo-interprétation sur les projets OCS2D Nord-Pas-de-Calais et PIGMA ATGeRi</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+ 
+    <!-- COLONNE DROITE : FORMATION + COMPÉTENCES -->
+    <div class="col-right">
+ 
+      <section>
+        <h2>Formation</h2>
+ 
+        <div class="edu">
+          <div class="edu-head">
+            <div class="edu-title">Master Géographie, Environnement &amp; Territoires</div>
+            <div class="edu-date">2018 — 2020</div>
+          </div>
+          <div class="edu-sub">M2 Développement Innovant et Solidaire des Territoires <span class="edu-mention">— Mention Bien</span></div>
+          <div class="edu-meta">Université de Lille · SIG &amp; télédétection (pixel + OBIA), formation Radar (Rudant &amp; Frison), analyse spatiale, statistiques, développement local, sciences de l'environnement</div>
+        </div>
+ 
+        <div class="edu">
+          <div class="edu-head">
+            <div class="edu-title">Licence Géographie — Aménagement</div>
+            <div class="edu-date">2014 — 2017</div>
+          </div>
+          <div class="edu-meta">Université de Lille · Biogéographie, écologie, géomorphologie, hydrologie, urbanisme</div>
+        </div>
+      </section>
+ 
+      <section>
+        <h2>Compétences techniques</h2>
+ 
+        <div class="skill-block">
+          <div class="skill-label">Programmation &amp; dataviz</div>
+          <div class="skill-list">
+            <div class="row"><strong>Python</strong>, FastAPI, <strong>SQL (Postgres / PostGIS)</strong>, PHP, R / Shiny, JavaScript, Bash</div>
+            <div class="row">MapLibre, Mapbox, D3.js, Chart.js, TileServer-GL</div>
+          </div>
+        </div>
+ 
+        <div class="skill-block">
+          <div class="skill-label">SIG &amp; ETL</div>
+          <div class="skill-list">QGIS, GRASS, SAGA, FME</div>
+        </div>
+ 
+        <div class="skill-block">
+          <div class="skill-label">Télédétection</div>
+          <div class="skill-list">OTB, eCognition, Google Earth Engine, SNAP</div>
+        </div>
+      </section>
+ 
+      <section>
+        <h2>Langues</h2>
+        <div class="lang-grid">
+          <strong>Français</strong><span class="lvl">Natif</span>
+          <strong>Anglais</strong><span class="lvl">C1</span>
+          <strong>Allemand</strong><span class="lvl">A1</span>
+        </div>
+      </section>
+ 
+      <section>
+        <h2>Savoir-être</h2>
+        <p class="softskills">Écoute · <span>Pédagogie</span> · Autodidaxie</p>
+      </section>
+ 
+    </div>
+  </div>
+</main>
+ 
+<div class="actions">
+  <button class="btn ghost" onclick="window.print()">Imprimer</button>
+  <button class="btn" id="pdfBtn" onclick="exportPDF()">↓ Exporter en PDF</button>
+</div>
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+  async function exportPDF() {
+    const btn = document.getElementById('pdfBtn');
+    const original = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Génération…';
+ 
+    try { await document.fonts.ready; } catch(e) {}
+ 
+    document.body.classList.add('exporting');
+    const element = document.getElementById('cv');
+ 
+    const opt = {
+      margin: 0,
+      filename: 'CV_Thomas_Lecae.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: {
+        scale: 3,
+        useCORS: true,
+        letterRendering: true,
+        backgroundColor: '#fdfbf6'
+      },
+      jsPDF: {
+        unit: 'mm',
+        format: 'a4',
+        orientation: 'portrait',
+        compress: true
+      },
+      pagebreak: { mode: ['avoid-all'] }
+    };
+ 
+    try {
+      await html2pdf().set(opt).from(element).save();
+    } catch (err) {
+      console.error(err);
+      alert('Erreur lors de la génération du PDF. Voir la console.');
+    } finally {
+      document.body.classList.remove('exporting');
+      btn.disabled = false;
+      btn.textContent = original;
+    }
+  }
+</script>
+ 
+</body>
+</html>
